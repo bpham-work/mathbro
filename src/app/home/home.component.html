@@ -1,37 +1,24 @@
 <div>
-  <h1 x-large class="sample-content">Your Content Here</h1>
-
-  <hr>
-
+  <div>TIME: {{ timer }}</div>
+  <button (click)="start()">START</button>
+  <div *ngIf="isEndOfGame">{{ winner }}</div>
+  <div>Player 1 Score: {{ p1Score }}</div>
+  <div>Player 2 Score: {{ p2Score }}</div>
+  <div *ngIf="p1Equation">{{ p1Equation.toString() }}</div>
+  <div *ngIf="p2Equation">{{ p2Equation.toString() }}</div>
+  <div>{{ p1Input }}</div>
+  <div>{{ p2Input }}</div>
   <div>
-    For hot module reloading run
-    <pre>npm run start:hmr</pre>
+    <div>Equation Settings</div>
+    <label>Lowest possible number:</label>
+    <input [(ngModel)]="minInt">
+    <label>Highest possible number:</label>
+    <input [(ngModel)]="maxInt">
+    <label>Allow Negatives:</label>
+    <input type="checkbox" [(ngModel)]="allowNegatives">
+
+    <div>Game Settings:</div>
+    <label>Time limit:</label>
+    <input [(ngModel)]="timerInput" (ngModelChange)="timerChange()">
   </div>
-
-  <hr>
-
-  <div>
-    <h4>Local State</h4>
-
-    <form (ngSubmit)="submitState(localState.value)" autocomplete="off">
-
-      <input
-        [value]="localState.value"
-        (input)="localState.value = $event.target.value"
-        placeholder="Submit Local State to App State"
-        autofocus>
-
-      <button>Submit Value</button>
-    </form>
-    <!--
-        <input type="text" [value]="localState.value" (input)="localState.value = $event.target.value" autofocus>
-        Rather than wiring up two-way data-binding ourselves with [value] and (input)
-        we can use Angular's [(ngModel)] syntax
-        <input type="text" name="textInput" [(ngModel)]="localState.value" autofocus>
-      -->
-
-    <pre>this.localState = {{ localState | json }}</pre>
-
-  </div>
-
 </div>

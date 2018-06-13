@@ -22,6 +22,8 @@ import { DevModuleModule } from './+dev-module';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
+import { EquationGenerator } from './services/equationgenerator';
+import { RandomNumberGenerator } from './services/randomnumbergenerator';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -72,7 +74,8 @@ interface StoreType {
    */
   providers: [
     environment.ENV_PROVIDERS,
-    APP_PROVIDERS
+    APP_PROVIDERS,
+    EquationGenerator
   ]
 })
 export class AppModule {}
