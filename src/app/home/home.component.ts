@@ -13,6 +13,8 @@ import { EquationGenerator } from '../services/equationgenerator';
 export class HomeComponent implements OnInit {
   public p1Score: number = 0;
   public p2Score: number = 0;
+  public p1History: Equation[] = [];
+  public p2History: Equation[] = [];
   public timer: number;
 
   public timerInput: number = 5;
@@ -40,21 +42,31 @@ export class HomeComponent implements OnInit {
     if (this.isGameStarted) {
       if (event.keyCode >= 48 && event.keyCode <= 57) {
         this.p1Input += event.key;
-        if (this.p1Equation.isCorrect(+this.p1Input)) {
-          this.p1Score++;
-          this.p1Equation = this.equationGen
-            .generate(this.minInt, this.maxInt, this.allowNegatives);
-          this.clearP1Input();
-        }
+        this.checkP1Input();
       } else if (event.keyCode >= 96 && event.keyCode <= 105) {
         this.p2Input += event.key;
-        if (this.p1Equation.isCorrect(+this.p1Input)) {
-          this.p2Score++;
-          this.p2Equation = this.equationGen
-            .generate(this.minInt, this.maxInt, this.allowNegatives);
-          this.clearP2Input();
-        }
+        this.checkP2Input();
       }
+    }
+  }
+
+  public checkP1Input(): void {
+    if (this.p1Equation.isCorrect(+this.p1Input)) {
+      this.p1Score++;
+      this.p1History.push(this.p1Equation);
+      this.p1Equation = this.equationGen
+        .generate(this.minInt, this.maxInt, this.allowNegatives);
+      this.clearP1Input();
+    }
+  }
+
+  public checkP2Input(): void {
+    if (this.p1Equation.isCorrect(+this.p1Input)) {
+      this.p2Score++;
+      this.p2History.push(this.p1Equation);
+      this.p2Equation = this.equationGen
+        .generate(this.minInt, this.maxInt, this.allowNegatives);
+      this.clearP2Input();
     }
   }
 

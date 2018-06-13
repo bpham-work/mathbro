@@ -1,6 +1,6 @@
 <div>
   <div>TIME: {{ timer }}</div>
-  <button (click)="start()">START</button>
+  <button mat-raised-button color="accent" (click)="start()">START</button>
   <div *ngIf="isEndOfGame">{{ winner }}</div>
   <div>Player 1 Score: {{ p1Score }}</div>
   <div>Player 2 Score: {{ p2Score }}</div>

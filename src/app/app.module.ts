@@ -23,7 +23,7 @@ import { DevModuleModule } from './+dev-module';
 import '../styles/styles.scss';
 import '../styles/headings.css';
 import { EquationGenerator } from './services/equationgenerator';
-import { RandomNumberGenerator } from './services/randomnumbergenerator';
+import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -61,6 +61,8 @@ interface StoreType {
       useHash: Boolean(history.pushState) === false,
       preloadingStrategy: PreloadAllModules
     }),
+    MatButtonModule,
+    MatCheckboxModule,
 
     /**
      * This section will import the `DevModuleModule` only in certain build types.
