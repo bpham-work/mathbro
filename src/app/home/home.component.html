@@ -1,9 +1,9 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-brand">Math With Bros!</div>
-    <button (click)="showLegend = !showLegend" class="navbar-right btn btn-default navbar-btn">Show Keys</button>
+    <button (click)="showLegend = !showLegend" class="navbar-right btn btn-default navbar-btn">Help</button>
     <button (click)="showSettings = !showSettings" class="navbar-right btn btn-default navbar-btn">Settings</button>
-    <button (click)="start()" class="btn btn-success navbar-right navbar-btn">Start</button>
+    <button #startBtn (click)="start()" class="btn btn-success navbar-right navbar-btn">Start</button>
   </div>
 </nav>
 

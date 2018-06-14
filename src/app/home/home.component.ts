@@ -1,6 +1,6 @@
 import {
-  Component, HostListener,
-  OnInit
+  Component, ElementRef, HostListener,
+  OnInit, ViewChild
 } from '@angular/core';
 import { Equation } from '../datamodels/equation';
 import { EquationGenerator } from '../services/equationgenerator';
@@ -11,6 +11,7 @@ import { EquationGenerator } from '../services/equationgenerator';
   templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
+  @ViewChild('startBtn') public startBtn: ElementRef;
   public p1Score: number = 0;
   public p2Score: number = 0;
   public p1CorrectList: Equation[] = [];
@@ -102,6 +103,7 @@ export class HomeComponent implements OnInit {
   }
 
   public start(): void {
+    this.startBtn.nativeElement.blur();
     this.reset();
     if (this.intervalId) {
       clearInterval(this.intervalId);
