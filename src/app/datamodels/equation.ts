@@ -1,7 +1,11 @@
 export class Equation {
-  constructor(private operand1: number, private operand2: number, private operator: string) {}
+  private answer: number;
 
-  public answer(): number {
+  constructor(private operand1: number, private operand2: number, private operator: string) {
+    this.answer = this.calculateAnswer();
+  }
+
+  public calculateAnswer(): number {
     let result: number = 0;
     switch (this.operator) {
       case '+':
@@ -21,10 +25,14 @@ export class Equation {
   }
 
   public isCorrect(userAnswer: number): boolean {
-    return userAnswer === this.answer();
+    return userAnswer === this.answer;
   }
 
   public toString(): string {
-    return `${this.operand1} ${this.operator} ${this.operand2} =`;
+    return `${this.operand1} ${this.operator} ${this.operand2}`;
+  }
+
+  public toFullEquationString(): string {
+    return `${this.operand1} ${this.operator} ${this.operand2} = ${this.answer}`;
   }
 }

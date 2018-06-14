@@ -13,11 +13,11 @@ import { EquationGenerator } from '../services/equationgenerator';
 export class HomeComponent implements OnInit {
   public p1Score: number = 0;
   public p2Score: number = 0;
-  public p1History: Equation[] = [];
-  public p2History: Equation[] = [];
+  public p1CorrectList: Equation[] = [];
+  public p2CorrectList: Equation[] = [];
   public timer: number;
 
-  public timerInput: number = 5;
+  public timerInput: number = 100;
   public minInt: number = 0;
   public maxInt: number = 10;
   public allowNegatives: boolean = false;
@@ -29,7 +29,9 @@ export class HomeComponent implements OnInit {
   public winner: string;
   public isEndOfGame: boolean = false;
   public isGameStarted: boolean = false;
-  public showSettings: boolean = true;
+  public showSettings: boolean = false;
+
+  private intervalId: any;
 
   constructor(private equationGen: EquationGenerator) {}
 
@@ -37,16 +39,20 @@ export class HomeComponent implements OnInit {
     this.timer = this.timerInput;
   }
 
-  @HostListener('document:keypress', ['$event'])
+  @HostListener('document:keydown', ['$event'])
   public handleKeypressEvent(event: KeyboardEvent): void {
-    console.log(event);
+    // console.log(event);
     if (this.isGameStarted) {
-      if (event.keyCode >= 48 && event.keyCode <= 57) {
-        this.p1Input += event.key;
-        this.checkP1Input();
-      } else if (event.keyCode >= 96 && event.keyCode <= 105) {
+      if (event.code === 'NumpadAdd') {
+        this.clearP2Input();
+      } else if (event.code.includes('Numpad')) {
         this.p2Input += event.key;
         this.checkP2Input();
+      } else if (event.code === 'Backspace') {
+        this.clearP1Input();
+      } else if (event.keyCode >= 48 && event.keyCode <= 57) {
+        this.p1Input += event.key;
+        this.checkP1Input();
       }
     }
   }
@@ -54,7 +60,7 @@ export class HomeComponent implements OnInit {
   public checkP1Input(): void {
     if (this.p1Equation.isCorrect(+this.p1Input)) {
       this.p1Score++;
-      this.p1History.push(this.p1Equation);
+      this.p1CorrectList.push(this.p1Equation);
       this.p1Equation = this.equationGen
         .generate(this.minInt, this.maxInt, this.allowNegatives);
       this.clearP1Input();
@@ -62,9 +68,9 @@ export class HomeComponent implements OnInit {
   }
 
   public checkP2Input(): void {
-    if (this.p1Equation.isCorrect(+this.p1Input)) {
+    if (this.p2Equation.isCorrect(+this.p2Input)) {
       this.p2Score++;
-      this.p2History.push(this.p1Equation);
+      this.p2CorrectList.push(this.p2Equation);
       this.p2Equation = this.equationGen
         .generate(this.minInt, this.maxInt, this.allowNegatives);
       this.clearP2Input();
@@ -90,18 +96,23 @@ export class HomeComponent implements OnInit {
     this.p2Input = '';
     this.timer = this.timerInput;
     this.isEndOfGame = false;
+    this.p1CorrectList = [];
+    this.p2CorrectList = [];
   }
 
   public start(): void {
     this.reset();
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
     this.isGameStarted = true;
     this.p1Equation = this.equationGen.generate(this.minInt, this.maxInt, this.allowNegatives);
     this.p2Equation = this.equationGen.generate(this.minInt, this.maxInt, this.allowNegatives);
-    const intervalId = setInterval(() => {
+    this.intervalId = setInterval(() => {
       this.timer--;
       if (this.timer === 0) {
         this.determineWinner();
-        clearInterval(intervalId);
+        clearInterval(this.intervalId);
       }
     }, 1000);
   }

@@ -1,19 +1,62 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
-    <div class="navbar-brand">Mathbro!</div>
+    <div class="navbar-brand">MathBro!</div>
     <button (click)="showSettings = !showSettings" class="navbar-right btn btn-default navbar-btn">Settings</button>
     <button (click)="start()" class="btn btn-success navbar-right navbar-btn">Start</button>
   </div>
 </nav>
-<div>
-  <div>TIME: {{ timer }}</div>
-  <div *ngIf="isEndOfGame">{{ winner }}</div>
-  <div>Player 1 Score: {{ p1Score }}</div>
-  <div>Player 2 Score: {{ p2Score }}</div>
-  <div *ngIf="p1Equation">{{ p1Equation.toString() }}</div>
-  <div *ngIf="p2Equation">{{ p2Equation.toString() }}</div>
-  <div>{{ p1Input }}</div>
-  <div>{{ p2Input }}</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="center-column">
+        <div class="two-em" [ngClass]="{'red': timer <= 10}">TIME: {{ timer }}</div>
+        <div *ngIf="isEndOfGame" class="three-em green">{{ winner }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="center-column">
+        <div>Player 1</div>
+        <div class="two-em" [ngClass]="{green: p1Score > p2Score && isEndOfGame}">
+          Score: {{ p1Score }}
+        </div>
+        <div *ngIf="p1Equation" class="five-em">
+          {{ p1Equation.toString() }}
+        </div>
+        <div class="five-em box">{{ p1Input }}</div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="center-column">
+        <div>Player 2</div>
+        <div class="two-em" [ngClass]="{green: p2Score > p1Score && isEndOfGame}">
+          Score: {{ p2Score }}
+        </div>
+        <div *ngIf="p2Equation" class="five-em">
+          {{ p2Equation.toString() }}
+        </div>
+        <div class="five-em box">{{ p2Input }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="history-box">
+        <span *ngFor="let eqn of p1CorrectList">
+          {{ eqn.toFullEquationString() }}
+        </span>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="history-box">
+        <span *ngFor="let eqn of p2CorrectList">
+          {{ eqn.toFullEquationString() }}
+        </span>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="settings" *ngIf="showSettings">
@@ -25,7 +68,7 @@
       </div>
     </div>
     <div class="form-group row">
-      <label for="inputMaxInt" class="col-sm-2 col-form-label">Min integer</label>
+      <label for="inputMaxInt" class="col-sm-2 col-form-label">Max integer</label>
       <div class="col-sm-10">
         <input class="form-control" id="inputMaxInt" [(ngModel)]="maxInt" [ngModelOptions]="{standalone: true}">
       </div>

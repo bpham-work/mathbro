@@ -7,3 +7,53 @@
   top: 75px;
   padding: 10px;
 }
+
+.center-column {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.two-em {
+  font-size: 2em;
+}
+
+.three-em {
+  font-size: 3em;
+}
+
+.five-em {
+  font-size: 5em;
+}
+ .red {
+   color: #EF5350;
+ }
+
+ .green {
+   color: #66BB6A;
+ }
+
+ .history-box {
+   display: flex;
+   flex-direction: column;
+   font-size: 2em;
+   padding: 5%;
+   flex-wrap: wrap;
+   max-height: 600px;
+ }
+
+ .min-height {
+   height: 100px;
+ }
+
+ .box {
+   min-height: 150px;
+   border: 1px solid black;
+   -webkit-border-radius: 5%;
+   -moz-border-radius: 5%;
+   border-radius: 5%;
+   padding: 4%;
+   min-width: 200px;
+ }
