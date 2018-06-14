@@ -15,10 +15,6 @@ import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
 import { HomeComponent } from './home';
-import { AboutComponent } from './about';
-import { NoContentComponent } from './no-content';
-import { XLargeDirective } from './home/x-large';
-import { DevModuleModule } from './+dev-module';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
@@ -43,10 +39,7 @@ interface StoreType {
   bootstrap: [ AppComponent ],
   declarations: [
     AppComponent,
-    AboutComponent,
     HomeComponent,
-    NoContentComponent,
-    XLargeDirective
   ],
   /**
    * Import Angular's modules.
@@ -60,13 +53,6 @@ interface StoreType {
       useHash: Boolean(history.pushState) === false,
       preloadingStrategy: PreloadAllModules
     }),
-
-    /**
-     * This section will import the `DevModuleModule` only in certain build types.
-     * When the module is not imported it will get tree shaked.
-     * This is a simple example, a big app should probably implement some logic
-     */
-    ...environment.showDevModule ? [ DevModuleModule ] : [],
   ],
   /**
    * Expose our Services and Providers into Angular's dependency injection.
