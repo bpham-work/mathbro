@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   public p2CorrectList: Equation[] = [];
   public timer: number;
 
-  public timerInput: number = 100;
+  public timerInput: number = 60;
   public minInt: number = 0;
   public maxInt: number = 10;
   public allowNegatives: boolean = false;
@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
   public isEndOfGame: boolean = false;
   public isGameStarted: boolean = false;
   public showSettings: boolean = false;
+  public showLegend: boolean = true;
 
   private intervalId: any;
 
