@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar">
   <div class="container-fluid">
     <div class="navbar-brand">Math With Bros!</div>
     <button (click)="showLegend = !showLegend" class="navbar-right btn btn-default navbar-btn">Help</button>
@@ -9,18 +9,10 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-4">
       <div class="center-column">
-        <div class="two-em" [ngClass]="{'red': timer <= 10}">TIME: {{ timer }}</div>
-        <div *ngIf="isEndOfGame" class="three-em green">{{ winner }}</div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="center-column">
-        <div>Player 1</div>
-        <div class="two-em" [ngClass]="{green: p1Score > p2Score && isEndOfGame}">
+        <div class="two-em" [ngClass]="{green: p1Score > p2Score && isEndOfGame}">Player 1</div>
+        <div class="three-em" [ngClass]="{green: p1Score > p2Score && isEndOfGame}">
           Score: {{ p1Score }}
         </div>
         <div *ngIf="p1Equation" class="five-em">
@@ -29,10 +21,18 @@
         <div class="five-em box">{{ p1Input }}</div>
       </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
       <div class="center-column">
-        <div>Player 2</div>
-        <div class="two-em" [ngClass]="{green: p2Score > p1Score && isEndOfGame}">
+        <div class="three-em" [ngClass]="{'red': timer <= 10, 'four-em': timer <= 10}">
+          TIME: {{ timer }}
+        </div>
+        <div *ngIf="isEndOfGame" class="three-em green">{{ winner }}</div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="center-column">
+        <div class="two-em" [ngClass]="{green: p2Score > p1Score && isEndOfGame}">Player 2</div>
+        <div class="three-em" [ngClass]="{green: p2Score > p1Score && isEndOfGame}">
           Score: {{ p2Score }}
         </div>
         <div *ngIf="p2Equation" class="five-em">

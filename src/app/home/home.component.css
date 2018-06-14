@@ -1,12 +1,25 @@
+nav {
+  background-color: #ef5350;
+  color: #000000;
+}
+
+.navbar button {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 .settings {
   position: absolute;
   z-index: 2;
   right: 0;
-  background-color: darkgray;
-  height: 100%;
+  background-color: #e0e0e0;
+  height: 35%;
   top: 75px;
   padding: 10px;
   border-radius: 5px;
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    3px 3px 5px 6px #ccc;  /* Firefox 3.5 - 3.6 */
+  box-shadow:         3px 3px 5px 6px #ccc;
 }
 
 .center-column {
@@ -28,6 +41,11 @@
 .five-em {
   font-size: 5em;
 }
+
+.four-em {
+  font-size: 4em;
+}
+
 .red {
  color: #EF5350;
 }
@@ -67,8 +85,11 @@
   padding: 5px;
   border-radius: 5px;
   font-size: 1.25em;
-  background-color: darkgray;
+  background-color: #e0e0e0;
   cursor: pointer;
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    3px 3px 5px 6px #ccc;  /* Firefox 3.5 - 3.6 */
+  box-shadow:         3px 3px 5px 6px #ccc;
 }
 
 .p2Legend {
@@ -79,6 +100,9 @@
   padding: 5px;
   border-radius: 5px;
   font-size: 1.25em;
-  background-color: darkgray;
+  background-color: #e0e0e0;
   cursor: pointer;
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    3px 3px 5px 6px #ccc;  /* Firefox 3.5 - 3.6 */
+  box-shadow:         3px 3px 5px 6px #ccc;
 }
