@@ -20,8 +20,9 @@ export class HomeComponent implements OnInit {
 
   public timerInput: number = 60;
   public minInt: number = 0;
-  public maxInt: number = 10;
-  public allowNegatives: boolean = false;
+  public maxInt: number = 12;
+  public allowNegativeDifference: boolean = false;
+  public allowDivision: boolean = false;
 
   public p1Equation: Equation;
   public p2Equation: Equation;
@@ -52,7 +53,7 @@ export class HomeComponent implements OnInit {
         this.checkP2Input();
       } else if (event.code === 'Backspace') {
         this.clearP1Input();
-      } else if (event.keyCode >= 48 && event.keyCode <= 57) {
+      } else if ((event.keyCode >= 48 && event.keyCode <= 57) || event.keyCode === 189) {
         this.p1Input += event.key;
         this.checkP1Input();
       }
@@ -64,7 +65,7 @@ export class HomeComponent implements OnInit {
       this.p1Score++;
       this.p1CorrectList.push(this.p1Equation);
       this.p1Equation = this.equationGen
-        .generate(this.minInt, this.maxInt, this.allowNegatives);
+        .generate(this.minInt, this.maxInt, this.allowDivision, this.allowNegativeDifference);
       this.clearP1Input();
     }
   }
@@ -74,7 +75,7 @@ export class HomeComponent implements OnInit {
       this.p2Score++;
       this.p2CorrectList.push(this.p2Equation);
       this.p2Equation = this.equationGen
-        .generate(this.minInt, this.maxInt, this.allowNegatives);
+        .generate(this.minInt, this.maxInt, this.allowDivision, this.allowNegativeDifference);
       this.clearP2Input();
     }
   }
@@ -109,8 +110,10 @@ export class HomeComponent implements OnInit {
       clearInterval(this.intervalId);
     }
     this.isGameStarted = true;
-    this.p1Equation = this.equationGen.generate(this.minInt, this.maxInt, this.allowNegatives);
-    this.p2Equation = this.equationGen.generate(this.minInt, this.maxInt, this.allowNegatives);
+    this.p1Equation = this.equationGen
+      .generate(this.minInt, this.maxInt, this.allowDivision, this.allowNegativeDifference);
+    this.p2Equation = this.equationGen
+      .generate(this.minInt, this.maxInt, this.allowDivision, this.allowNegativeDifference);
     this.intervalId = setInterval(() => {
       this.timer--;
       if (this.timer === 0) {

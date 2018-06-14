@@ -75,35 +75,49 @@
 <div class="settings" *ngIf="showSettings">
   <form>
     <div class="form-group row">
-      <label for="inputMinInt" class="col-sm-2 col-form-label">Min integer</label>
-      <div class="col-sm-10">
+      <label for="inputMinInt" class="col-sm-8 col-form-label">Min integer</label>
+      <div class="col-sm-4">
         <input class="form-control" id="inputMinInt" [(ngModel)]="minInt" [ngModelOptions]="{standalone: true}">
       </div>
     </div>
     <div class="form-group row">
-      <label for="inputMaxInt" class="col-sm-2 col-form-label">Max integer</label>
-      <div class="col-sm-10">
+      <label for="inputMaxInt" class="col-sm-8 col-form-label">Max integer</label>
+      <div class="col-sm-4">
         <input class="form-control" id="inputMaxInt" [(ngModel)]="maxInt" [ngModelOptions]="{standalone: true}">
       </div>
     </div>
     <div class="form-group row">
-      <label class="col-sm-2 col-form-label">Allow Negatives</label>
-      <div class="col-sm-10">
+      <label class="col-sm-8 col-form-label">
+        Allow Negative Difference
+        <br/>
+        <small class="form-text text-muted">
+          Allows for differences to be negative i.e 2 - 5 = -3
+        </small>
+      </label>
+      <div class="col-sm-4">
         <div class="form-check">
-          <input class="form-check-input" [(ngModel)]="allowNegatives" type="checkbox" id="gridCheck1" [ngModelOptions]="{standalone: true}">
+          <input class="form-check-input" [(ngModel)]="allowNegativeDifference" type="checkbox" [ngModelOptions]="{standalone: true}">
         </div>
       </div>
     </div>
     <div class="form-group row">
-      <label for="timelimit" class="col-sm-2 col-form-label">Time Limit</label>
-      <div class="col-sm-10">
+      <label class="col-sm-8 col-form-label">Allow Division</label>
+      <div class="col-sm-4">
+        <div class="form-check">
+          <input class="form-check-input" [(ngModel)]="allowDivision" type="checkbox" [ngModelOptions]="{standalone: true}">
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="timelimit" class="col-sm-8 col-form-label">Time Limit</label>
+      <div class="col-sm-4">
         <input class="form-control" id="timelimit"
                [(ngModel)]="timerInput" (ngModelChange)="timerChange()"
                [ngModelOptions]="{standalone: true}">
       </div>
     </div>
     <div class="form-group-row">
-      <button (click)="showSettings = !showSettings" class="btn btn-default">Apply</button>
+      <button (click)="showSettings = !showSettings" class="btn btn-primary">Apply</button>
     </div>
   </form>
 </div>
