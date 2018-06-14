@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit {
   public winner: string;
   public isEndOfGame: boolean = false;
   public isGameStarted: boolean = false;
+  public showSettings: boolean = true;
 
   constructor(private equationGen: EquationGenerator) {}
 

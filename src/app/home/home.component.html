@@ -1,6 +1,12 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-brand">Mathbro!</div>
+    <button (click)="showSettings = !showSettings" class="navbar-right btn btn-default navbar-btn">Settings</button>
+    <button (click)="start()" class="btn btn-success navbar-right navbar-btn">Start</button>
+  </div>
+</nav>
 <div>
   <div>TIME: {{ timer }}</div>
-  <button mat-raised-button color="accent" (click)="start()">START</button>
   <div *ngIf="isEndOfGame">{{ winner }}</div>
   <div>Player 1 Score: {{ p1Score }}</div>
   <div>Player 2 Score: {{ p2Score }}</div>
@@ -8,17 +14,37 @@
   <div *ngIf="p2Equation">{{ p2Equation.toString() }}</div>
   <div>{{ p1Input }}</div>
   <div>{{ p2Input }}</div>
-  <div>
-    <div>Equation Settings</div>
-    <label>Lowest possible number:</label>
-    <input [(ngModel)]="minInt">
-    <label>Highest possible number:</label>
-    <input [(ngModel)]="maxInt">
-    <label>Allow Negatives:</label>
-    <input type="checkbox" [(ngModel)]="allowNegatives">
+</div>
 
-    <div>Game Settings:</div>
-    <label>Time limit:</label>
-    <input [(ngModel)]="timerInput" (ngModelChange)="timerChange()">
-  </div>
+<div class="settings" *ngIf="showSettings">
+  <form>
+    <div class="form-group row">
+      <label for="inputMinInt" class="col-sm-2 col-form-label">Min integer</label>
+      <div class="col-sm-10">
+        <input class="form-control" id="inputMinInt" [(ngModel)]="minInt" [ngModelOptions]="{standalone: true}">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputMaxInt" class="col-sm-2 col-form-label">Min integer</label>
+      <div class="col-sm-10">
+        <input class="form-control" id="inputMaxInt" [(ngModel)]="maxInt" [ngModelOptions]="{standalone: true}">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Allow Negatives</label>
+      <div class="col-sm-10">
+        <div class="form-check">
+          <input class="form-check-input" [(ngModel)]="allowNegatives" type="checkbox" id="gridCheck1" [ngModelOptions]="{standalone: true}">
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="timelimit" class="col-sm-2 col-form-label">Time Limit</label>
+      <div class="col-sm-10">
+        <input class="form-control" id="timelimit"
+               [(ngModel)]="timerInput" (ngModelChange)="timerChange()"
+               [ngModelOptions]="{standalone: true}">
+      </div>
+    </div>
+  </form>
 </div>
