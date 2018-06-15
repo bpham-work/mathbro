@@ -15,6 +15,9 @@ export class EquationGenerator {
     } else if (allowDivision && operator === '/') {
       if (operand1 === 0) {
         operand2 = RandomNumberGenerator.getRandomInt(min, max);
+        while (operand2 === 0) {
+          operand2 = RandomNumberGenerator.getRandomInt(min, max);
+        }
       } else {
         operand2 = RandomNumberGenerator.getRandomMultipleUpTo(operand1);
       }
