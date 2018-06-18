@@ -9,7 +9,7 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-5">
       <div class="center-column">
         <div class="two-em" [ngClass]="{green: p1Score > p2Score && isEndOfGame}">Player 1</div>
         <div class="three-em" [ngClass]="{green: p1Score > p2Score && isEndOfGame}">
@@ -21,7 +21,7 @@
         <div class="five-em box">{{ p1Input }}</div>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-2">
       <div class="center-column">
         <div class="three-em" [ngClass]="{'red': timer <= 10, 'four-em': timer <= 10}">
           TIME: {{ timer }}
@@ -29,7 +29,7 @@
         <div *ngIf="isEndOfGame" class="three-em green">{{ winner }}</div>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-5">
       <div class="center-column">
         <div class="two-em" [ngClass]="{green: p2Score > p1Score && isEndOfGame}">Player 2</div>
         <div class="three-em" [ngClass]="{green: p2Score > p1Score && isEndOfGame}">

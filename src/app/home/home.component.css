@@ -1,6 +1,6 @@
 nav {
   background-color: #ef5350;
-  color: #000000;
+  color: #FFFFFF;
 }
 
 .navbar button {
@@ -13,7 +13,7 @@ nav {
   z-index: 2;
   right: 0;
   background-color: #e0e0e0;
-  height: 35%;
+  height: 325px;
   top: 75px;
   padding: 10px;
   border-radius: 5px;
